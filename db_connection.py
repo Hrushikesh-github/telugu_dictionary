@@ -1,7 +1,7 @@
 import boto3
 from boto3.dynamodb.conditions import Key
-from app.utils import process_prefix
 import os
+from utils import process_prefix
 
 class connect_db():
     def __init__(self) -> None:

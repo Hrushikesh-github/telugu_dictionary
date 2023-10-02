@@ -1,4 +1,3 @@
-from app.utils import list_cases
 
 def get_meaning(word: str, db_connection):
     '''
@@ -61,7 +60,7 @@ def get_multiple_meaning_sentence(sentence: str, db_connection):
                 word_dict[word] = []
                 word_dict[word].append(meaning)
         else:
-            word_dict[word] = get_prefix(word)
+            word_dict[word] = get_prefix(word. db_connection)
     return word_dict
 
 def get_meaning_sentence(sentence: str, db_connection):
@@ -82,17 +81,17 @@ def obtain_meaning_prefix(word: str, db_connection):
             word_dict[word].append(meaning)
         return word_dict
     else:
-        prefix_list = get_prefix(word)
+        prefix_list = get_prefix(word, db_connection)
         return {'similar words' :prefix_list}
     
-
 def list_cases(word):
     if len(word) < 3:
-        return word
+        return [word]
     
     if word[-1]  in ['!', '.', '?', '`', "'", '"']:
         #print("CASE 0")
         word = word[:-1]
+        return [word]
     # చట్టానికి
     if word[-5:] == 'ానికి':
         #print("CASE 1")
