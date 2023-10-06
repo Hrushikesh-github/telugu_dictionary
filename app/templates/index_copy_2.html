@@ -49,16 +49,16 @@
                 .catch(error => console.error(error));
         }
         function getMeaningForWord(word) {
-    fetch(`https://nl5wni1g7c.execute-api.us-east-1.amazonaws.com/cors-enabled/telugu-words/?word=${teluguWord}`)
+    fetch(`https://nl5wni1g7c.execute-api.us-east-1.amazonaws.com/prod/telugu-words/?word=${word}`)
         .then(response => response.json())
         .then(meaning => {
             const outputDiv = document.getElementById('output');
             outputDiv.innerHTML = '';
-            if (meaning) {
+            if (meaning && typeof meaning === 'object') {
                 const ul = document.createElement('ul');
-                meaning.forEach(meaningText => {
+                Object.entries(meaning).forEach(([word, meanings]) => {
                     const li = document.createElement('li');
-                    li.innerText = meaningText;
+                    li.innerText = meanings.join(', ');  // Assuming meanings is an array of strings
                     ul.appendChild(li);
                 });
                 outputDiv.appendChild(ul);
